@@ -38,7 +38,7 @@ export class TasksService {
     async getTaskById(id: number): Promise<Task> {
       const found = await this.taskRepository.findOne(id);
 
-      if (!found) {
+    if (!found) {
       throw new NotFoundException(`Task with ID "${id}" not found`);
     }
 
@@ -49,11 +49,13 @@ export class TasksService {
     return this.taskRepository.createTask(createTaskDto);
   }
 
-  async deleteTask(id: number): Promise<DeleteResult> {
-    const found = await this.getTaskById(id);
-    // if not found - error 404 will be thrown to client automatically (!)
-
-    return this.taskRepository.delete(id);
+  async deleteTask(id: number): Promise<void> {
+    const result = await this.taskRepository.delete(id);
+    
+    // More effective way
+    if (result.affected === 0) {
+      throw new NotFoundException(`Task with ID "${id}" not found`);
+    }
   }
 
   // updateTaskStatus(id: string, status: TaskStatus): Task {
