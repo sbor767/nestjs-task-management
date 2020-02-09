@@ -5,6 +5,7 @@ import { TaskRepository } from './task.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from './task.entity';
 import { TaskStatus } from './task-status.enum';
+import { DeleteResult } from 'typeorm';
 
 @Injectable()
 export class TasksService {
@@ -48,11 +49,12 @@ export class TasksService {
     return this.taskRepository.createTask(createTaskDto);
   }
 
-  // deleteTask(id: string): void {
-  //   const found = this.getTaskById(id);
-  //   // if not found - error 404 will be thrown to client automatically (!)
-  //   this.tasks = this.tasks.filter(task => task.id !== found.id);
-  // }
+  async deleteTask(id: number): Promise<DeleteResult> {
+    const found = await this.getTaskById(id);
+    // if not found - error 404 will be thrown to client automatically (!)
+
+    return this.taskRepository.delete(id);
+  }
 
   // updateTaskStatus(id: string, status: TaskStatus): Task {
   //   const task = this.getTaskById(id);
