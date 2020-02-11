@@ -18,4 +18,9 @@ export class Task extends BaseEntity {
 
   @ManyToOne(type => User, user => user.tasks, { eager: false })
   user: User;
+
+  // @TODO (!) we must implebement this column
+  // this is strange, may be it specific to Postgres?
+  @Column()
+  userId: number;
 }
