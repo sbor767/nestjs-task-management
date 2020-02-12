@@ -1,3 +1,6 @@
+server:
+  port: PORT
+
 db:
   host: RDS_HOSTNAME
   port: RDS_PORT
