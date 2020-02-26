@@ -1,5 +1,6 @@
 server:
   port: PORT
+  origin: FRONTEND_ORIGIN
 
 db:
   host: RDS_HOSTNAME
