@@ -34,7 +34,7 @@ main.ts         -> Entry point
 ### 1. Install dependencies
 
 ```
-npm install
+yarn install --frozen-lockfile
 ```
 
 ### 2. Setup environment variables
@@ -53,7 +53,7 @@ JWT_SECRET=topsecret
 ### 3. Run the app
 
 ```
-npm run start:dev
+yarn run start:dev
 ```
 
 ---
